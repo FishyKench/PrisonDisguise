@@ -12,6 +12,10 @@ public class Player : MonoBehaviour
     [Header("References")]
     public Rigidbody rb;
     public Vector3 movement;
+    public GameObject _bullet;
+    public Transform _bullesOffSet;
+
+
 
     [Header("Stats")]
     public float _health = 3;
@@ -27,6 +31,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         movePlayer();
+        shoot();
     }
 
     private void FixedUpdate()
@@ -51,6 +56,15 @@ public class Player : MonoBehaviour
         if (_health <= 0)
         {
             Destroy(this.gameObject);
+        }
+    }
+
+
+    public void shoot()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            Instantiate(_bullet, _bullesOffSet.position, _bullesOffSet.rotation);
         }
     }
 }
